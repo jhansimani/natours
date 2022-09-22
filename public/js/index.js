@@ -50,10 +50,8 @@ if (userPasswordForm) {
 }
 if (bookingBtn) {
   bookingBtn.addEventListener('click', (e) => {
-    console.log(e);
     e.target.textContent = 'processing ....';
     const { tourId } = e.target.dataset;
-    console.log(tourId);
     bookTour(tourId);
   });
 }

@@ -43,7 +43,7 @@ exports.signUp = catchAsync(async (req, res, next) => {
   // const newUser = await User.create(req.body);
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
+  // console.log(url);
   await new Email(newUser, url).sendWelcome();
 
   createSendToken(newUser, 201, res);
@@ -182,7 +182,7 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
       message: 'Token sent to email',
     });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     user.passwordResetToken = undefined;
     user.passwordResetExpires = undefined;
     await user.save({ validateBeforeSave: false });
@@ -201,14 +201,14 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
     .createHash('sha256')
     .update(req.params.token)
     .digest('hex');
-  console.log(hashedToken);
+  // console.log(hashedToken);
   const user = await User.findOne({
     passwordResetToken: hashedToken,
     passwordResetExpires: {
       $gt: Date.now(),
     },
   });
-  console.log(user);
+  // console.log(user);
   // 2) If token has not expired , and there is a user, set the new password
 
   if (!user) {
@@ -228,7 +228,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from the collection
   const user = await User.findById(req.user.id).select('+password');
-  console.log(user);
+  // console.log(user);
   // 2) If posted password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
     return next(new AppError('your current password is wrong', 401));

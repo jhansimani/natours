@@ -17,7 +17,7 @@ module.exports = class Email {
       return 1;
     }
 
-    console.log('development');
+    // console.log('development');
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
       port: process.env.EMAIL_PORT,
@@ -49,8 +49,8 @@ module.exports = class Email {
     };
     // 3) create a transport and send email
     await this.newTransport().sendMail(mailOptions, (err, info) => {
-      console.log(info);
-      console.log(err);
+      // console.log(info);
+      // console.log(err);
     });
   }
   async sendWelcome() {

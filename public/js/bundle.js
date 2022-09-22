@@ -11157,7 +11157,6 @@ var login = /*#__PURE__*/function () {
 
           case 3:
             result = _context.sent;
-            console.log(result);
 
             if (result.data.status === 'success') {
               (0, _alerts.showAlert)('success', 'Logged in successfully');
@@ -11166,20 +11165,20 @@ var login = /*#__PURE__*/function () {
               }, 1500);
             }
 
-            _context.next = 11;
+            _context.next = 10;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 7:
+            _context.prev = 7;
             _context.t0 = _context["catch"](0);
             (0, _alerts.showAlert)('error', _context.t0.response.data.message);
 
-          case 11:
+          case 10:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 8]]);
+    }, _callee, null, [[0, 7]]);
   }));
 
   return function login(_x, _x2) {
@@ -11210,16 +11209,15 @@ var logout = /*#__PURE__*/function () {
               location.reload(true);
             }
 
-            _context2.next = 11;
+            _context2.next = 10;
             break;
 
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
-            console.log(_context2.t0.response);
             (0, _alerts.showAlert)('error', 'Error logging out:Try Again');
 
-          case 11:
+          case 10:
           case "end":
             return _context2.stop();
         }
@@ -11339,28 +11337,26 @@ var bookTour = /*#__PURE__*/function () {
 
           case 3:
             session = _context.sent;
-            // 2) create checkout form +
-            console.log(session);
-            _context.next = 7;
+            _context.next = 6;
             return stripe.redirectToCheckout({
               sessionId: session.data.session.id
             });
 
-          case 7:
-            _context.next = 12;
+          case 6:
+            _context.next = 11;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context["catch"](0);
             (0, _alerts.showAlert)('error', _context.t0);
 
-          case 12:
+          case 11:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 9]]);
+    }, _callee, null, [[0, 8]]);
   }));
 
   return function bookTour(_x) {
@@ -11723,10 +11719,8 @@ if (userPasswordForm) {
 
 if (bookingBtn) {
   bookingBtn.addEventListener('click', function (e) {
-    console.log(e);
     e.target.textContent = 'processing ....';
     var tourId = e.target.dataset.tourId;
-    console.log(tourId);
     (0, _stripe.bookTour)(tourId);
   });
 }

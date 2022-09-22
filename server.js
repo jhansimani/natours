@@ -11,7 +11,7 @@ process.on('uncaughtException', (err) => {
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 // will gives current environment in which our node app is running
-console.log(app.get('env')); // this env one is sets by express
+// console.log(app.get('env')); // this env one is sets by express
 const DB = process.env.DATABASE.replace(
   '<PASSWORD>',
   process.env.DATABASEPASSWORD

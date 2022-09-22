@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./Routes/tourRoutes');
@@ -108,7 +109,7 @@ app.use((req, res, next) => {
 // app.use(helmet({ contentSecurityPolicy: false }));
 // development logger
 
-console.log('Environment', process.env.NODE_ENV);
+// console.log('Environment', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -173,9 +174,10 @@ app.use((req, res, next) => {
   // console.log('Hello from Middleware 👋👋');
   next();
 });
+app.use(compression());
 app.use((req, res, next) => {
   req.requestedTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 

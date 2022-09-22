@@ -13,7 +13,6 @@ const handleJsonWebTokenError = (err) => {
   return new AppError(message, 401);
 };
 const handleDuplicateErrorDB = (err) => {
-  console.log(err);
   const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
   const message = `Duplicate field value:${value} `;
   return new AppError(message, 400);
